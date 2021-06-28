@@ -19,7 +19,7 @@ import { SameValueZero } from 'es-abstract';
     //refs
 const refs = getRefs();
  
-    //поиск по форме
+    //------------------------------------поиск по форме
 refs.serchInput.addEventListener('input', _.debounce(onInputSearch, 1000));
 
 function onInputSearch (event) {
@@ -34,7 +34,6 @@ function onInputSearch (event) {
     }
         
     API.fetchCountriesByName(searchCountry)
-       // .then(searchClear)
         .then(createCountries)
         .catch(error => {
             console.log(error);
@@ -42,7 +41,7 @@ function onInputSearch (event) {
       
 }
 
-    //запросы пользователя
+    //-----------------------------------запросы пользователя
 function createCountries(countries) {
   refs.cardContainer.innerHTML = '';
 
@@ -65,7 +64,7 @@ function createCountries(countries) {
       
 }
      
-    //ошибка поиска
+    //---------------------------------ошибка поиска
 function onSerchError(value) {
        
         info({
@@ -94,7 +93,7 @@ function onSerchError(value) {
 
 // }
     
-//specific query
+//--------------------------------specific query
 function onError() {
      
         info({
@@ -122,14 +121,14 @@ function onError() {
 
     }
 
-    //функция для рендеринга стран
+    //-------------------------функция для рендеринга стран
 function renderCountries(country) {
         const markup = countriesCardTpl(country[0]);
     refs.cardContainer.innerHTML = markup;
     //createCountries();
 }
 
-//функция для рендеринга списка
+//--------------------------функция для рендеринга списка
 function renderList(country) {
         const markup = listCountryTpl(country);
     refs.cardContainer.insertAdjacentHTML('beforeend', markup)
